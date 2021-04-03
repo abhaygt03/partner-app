@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:partner/login.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:multilevel_drawer/multilevel_drawer.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -17,9 +19,71 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        actions: [
+      drawer: MultiLevelDrawer(
+          backgroundColor: Colors.white,
+          rippleColor: Colors.white,
+          subMenuBackgroundColor: Colors.grey.shade100,
+          header: Container( 
+            margin: EdgeInsets.only(top: 30),
+            child: Center(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.network("https://i.pinimg.com/originals/93/25/7d/93257da860d6ff6ac907190300ecda57.jpg",width: 180,height: 180,),
+               
+              ],
+            )),
+          ),
+
+          children: [           // Child Elements for Each Drawer Item
+            MLMenuItem(
+                leading: Icon(Icons.person),
+                trailing: Icon(Icons.arrow_right),
+                content: Text(
+                  "My Profile",
+                ),
+                subMenuItems: [
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 1")),
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 2")),
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 3")),
+                ],
+                onClick: () {}),
+            MLMenuItem(
+                leading: Icon(Icons.settings),
+                trailing: Icon(Icons.arrow_right),
+                content: Text("Settings"),
+                onClick: () {},
+                subMenuItems: [
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 1")),
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 2"))
+                ]),
+            MLMenuItem(
+              leading: Icon(Icons.notifications),
+              content: Text("Notifications"),
+              onClick: () {},
+            ),
+            MLMenuItem(
+                leading: Icon(Icons.payment),
+                trailing: Icon(Icons.arrow_right),
+                content: Text(
+                  "Payments",
+                ),
+                subMenuItems: [
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 1")),
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 2")),
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 3")),
+                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 4")),
+                ],
+                onClick: () {}),
+          ],
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Colors.black),
+          title: Text(
+            "",
+            style: TextStyle(color: Colors.black),
+          ),
+           actions: [
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () async {
@@ -31,7 +95,7 @@ class _HomeState extends State<Home> {
             },
           )
         ],
-      ),
+        ),
       body: SizedBox(
         // height: 300,
         
