@@ -45,7 +45,6 @@ class _HomeState extends State<Home> {
                     margin: EdgeInsets.only(bottom: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Row(
                           children: <Widget>[
@@ -59,19 +58,32 @@ class _HomeState extends State<Home> {
                         ),
                         Container(
                           padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          child: Text("Toyota car"),
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          child: Text("Toyota",
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                           child: Text(
-                           "A red coloured car need to be washed on today",
+                           "This is a sample presentation of mobile aaplication. The content is a random choice. Any resemblance to persons, names or statements is random and has nothing to do with reality.",
                             style: TextStyle(
                               fontSize: 16,
                               color: Color(0xAA000000),
                               fontWeight: FontWeight.w400,
-                            ),
+                                    ),
+                          ),
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          child: Text(
+                          "Address Street:  811, 8 Floor, Dalamal House, Nariman Point\nCity:   Mumbai\nState/province/area:    Maharashtra\nPhone number  02222841349\nZip code  400021\nCountry calling code  +91",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xAA000000),
+                              fontWeight: FontWeight.w400,
+                                    ),
                           ),
                         ),
                       ],
@@ -82,7 +94,8 @@ class _HomeState extends State<Home> {
           itemCount: 4,
           loop: false,
           // pagination: new SwiperPagination(),
-          control: new SwiperControl(),
+          control: new SwiperControl(size: 0,),
+          
         ),
       ),
     );
