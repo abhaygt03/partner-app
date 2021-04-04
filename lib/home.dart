@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:partner/Order.dart';
 import 'package:partner/login.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
@@ -29,33 +30,27 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.network("https://i.pinimg.com/originals/93/25/7d/93257da860d6ff6ac907190300ecda57.jpg",width: 180,height: 180,),
-               
               ],
             )),
           ),
 
-          children: [           // Child Elements for Each Drawer Item
+          children: [          
             MLMenuItem(
                 leading: Icon(Icons.person),
-                trailing: Icon(Icons.arrow_right),
                 content: Text(
                   "My Profile",
                 ),
-                subMenuItems: [
-                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 1")),
-                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 2")),
-                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 3")),
-                ],
-                onClick: () {}),
+                onClick: (){
+                  Navigator.pushNamed(
+                  context,'/Profile');
+                }
+                ),
+                
             MLMenuItem(
                 leading: Icon(Icons.settings),
-                trailing: Icon(Icons.arrow_right),
                 content: Text("Settings"),
                 onClick: () {},
-                subMenuItems: [
-                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 1")),
-                  MLSubmenu(onClick: () {}, submenuContent: Text("Option 2"))
-                ]),
+                ),
             MLMenuItem(
               leading: Icon(Icons.notifications),
               content: Text("Notifications"),
@@ -77,7 +72,7 @@ class _HomeState extends State<Home> {
           ],
         ),
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black38,
           iconTheme: IconThemeData(color: Colors.black),
           title: Text(
             "",
@@ -101,59 +96,62 @@ class _HomeState extends State<Home> {
         
         child: new Swiper(
           itemBuilder: (BuildContext context,int index){
-            return new Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(18.0),
-                                child: Image.network(pic[index],),
+            return GestureDetector(
+                          onTap: ()=>{Navigator.push(context,MaterialPageRoute(builder: (context)=>Order(pic[index])))},
+                          child: new Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  child: Image.network(pic[index],),
+                                ),
                               ),
+                            ],
+                          ),
+                          Container(
+                            padding:
+                                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            child: Text("Toyota",
+                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                          ),
+                          Container(
+                            padding:
+                                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            child: Text(
+                             "This is a sample presentation of mobile aaplication. The content is a random choice. Any resemblance to persons, names or statements is random and has nothing to do with reality.",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xAA000000),
+                                fontWeight: FontWeight.w400,
+                                      ),
                             ),
-                          ],
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          child: Text("Toyota",
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          child: Text(
-                           "This is a sample presentation of mobile aaplication. The content is a random choice. Any resemblance to persons, names or statements is random and has nothing to do with reality.",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xAA000000),
-                              fontWeight: FontWeight.w400,
-                                    ),
                           ),
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          child: Text(
-                          "Address Street:  811, 8 Floor, Dalamal House, Nariman Point\nCity:   Mumbai\nState/province/area:    Maharashtra\nPhone number  02222841349\nZip code  400021\nCountry calling code  +91",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xAA000000),
-                              fontWeight: FontWeight.w400,
-                                    ),
+                          Container(
+                            padding:
+                                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            child: Text(
+                            "Address Street:  811, 8 Floor, Dalamal House, Nariman Point\nCity:   Mumbai\nState/province/area:    Maharashtra\nPhone number  02222841349\nZip code  400021\nCountry calling code  +91",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xAA000000),
+                                fontWeight: FontWeight.w400,
+                                      ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                );
+            );
           },
           itemCount: 4,
           loop: false,
